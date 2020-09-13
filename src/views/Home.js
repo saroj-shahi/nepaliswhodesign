@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { apiPath } from '../data/config'
 
+import ScrollAnimation from 'react-animate-on-scroll'
 import { connect } from 'react-redux';
 import { setIsLoading } from '../store/action'
 
@@ -45,7 +46,10 @@ class Home extends React.Component {
             return <div className="container">
                 <div className="row py-5">
                     { people && people.map((item, index) => <div className="col-lg-4 col-sm-6" key={ index } >
-                    <UserCard data={ item } /></div>) }
+                    <ScrollAnimation animateIn="animate__fadeInUp">
+                        <UserCard data={ item } />
+                    </ScrollAnimation>    
+                    </div>) }
                 </div>
             </div>
         }

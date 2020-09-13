@@ -1,5 +1,5 @@
 import React from 'react'
-
+import ScrollAnimation from 'react-animate-on-scroll'
 
 export default class Input extends React.Component {
 
@@ -46,7 +46,7 @@ export default class Input extends React.Component {
                 inputBox = <input className="form-control" name={ name } id={ name } type={ type } required={ required } placeholder={ placeholder } min={ min } max={ max } accept={ accept } onChange={ this.handleChange } />
             break;
         }
-        return <div className={ `form-group` }>
+        return <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } delay={ 50 }><div className={ `form-group` }>
             <label className={type==='file'?'clickable': null} htmlFor={ name }>
                 <div className="form-label">{ label }</div>
                 { imageURL && <div className="d-flex align-items-start mt-3">
@@ -57,6 +57,6 @@ export default class Input extends React.Component {
                 { inputBox }
                 { hint && <small className="form-hint d-block mt-2">{ hint }</small>}
             </label>
-        </div>
+        </div></ScrollAnimation>
     }
 }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { apiPath } from '../data/config'
 import { disciplines } from '../data/disciplines'
-
+import ScrollAnimation from 'react-animate-on-scroll'
 
 import { connect } from 'react-redux';
 import { setIsLoading } from '../store/action'
@@ -65,17 +65,21 @@ class Profile extends React.Component {
             return <div className="container">
             <div className="row align-items-center">
                 <div className="col-md-5 my-5 my-md-0">
+                <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } delay={100}>
                     <h1 className="title-1 mb-4 text-lowercase">{ people.name }</h1>
                     { people.experience && <p className="text-uppercase">Designer since { yearsince - people.experience }</p> }
+                </ScrollAnimation>
                 </div>
                 <div className="col-md-7">
-                    { image && <img src={ image } alt={ people.name } className="img-banner" /> }
+                    { image && <img src={ image } alt={ people.name } className="img-banner animate__animated animate__zoomInUp" /> }
                 </div>
             </div>
 
             <div className="row my-5">
                 <div className="col-lg-8 offset-lg-1">
+                <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false }>
                     <p className="title-3">{ people.intro }</p>
+                </ScrollAnimation>
                 </div>
 
                 <div className="col-12 mb-5"></div>
@@ -89,7 +93,9 @@ class Profile extends React.Component {
                 </div>
                 
                 <div className="col-lg-7">
-                    <p className="title-4">{ people.bio }</p>
+                    <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false }>
+                        <p className="title-4">{ people.bio }</p>
+                    </ScrollAnimation>
                 </div>
             </div>
 
@@ -98,7 +104,9 @@ class Profile extends React.Component {
                 { social.map((item, index) => {
                     if(people[item]) {
                         return <div className="col" key={ index }>
-                            <a href={ people[item] } target="_blank" rel="noopener noreferrer" className="btn btn-social">{ item }</a>
+                            <ScrollAnimation animateIn="animate__fadeInDown" initiallyVisible={ false } delay={ 100*index }>
+                                <a href={ people[item] } target="_blank" rel="noopener noreferrer" className="btn btn-social">{ item }</a>
+                            </ScrollAnimation>
                         </div>
                     } else {
                         return false

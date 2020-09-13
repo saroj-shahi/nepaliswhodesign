@@ -2,6 +2,7 @@ import React from "react"
 import { NavLink } from 'react-router-dom'
 import { apiPath } from '../data/config'
 
+import ScrollAnimation from 'react-animate-on-scroll'
 import Arrow from "../img/arrow.svg"
 
 export default class UserCard extends React.Component {
@@ -12,17 +13,21 @@ export default class UserCard extends React.Component {
         let profile =  data ? data.photourl.replace(".jpg", "") : null
 
         return <NavLink to={ `/profile/${ profile }` } className="card my-3 my-md-5">
-            <div className="card-content">
+            <ScrollAnimation animateIn="animate__fadeIn" initiallyVisible={ false }>
+                <div className="card-content">
 
-            <figure className="card-img-wrapper">
-                <img src={ image } className="card-img" alt={ data ? data.name : null } />
-            </figure>
+                <figure className="card-img-wrapper">
+                    <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } delay={100}>
+                        <img src={ image } className="card-img" alt={ data ? data.name : null } />
+                    </ScrollAnimation>
+                </figure>
 
-            <span className="card-arrow">
-                <img src={ Arrow } alt="arrow" />
-            </span>
-            <p className="card-name text-lowercase">{ data ? data.name : null }</p>
-            </div>
+                <span className="card-arrow">
+                    <img src={ Arrow } alt="arrow" />
+                </span>
+                <p className="card-name text-lowercase">{ data ? data.name : null }</p>
+                </div>
+            </ScrollAnimation>
         </NavLink>
     }
 }

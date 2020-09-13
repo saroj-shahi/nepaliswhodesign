@@ -11,6 +11,7 @@ import ScrollTop from "./components/ScrollTop"
 
 import './css/bootstrap-grid.min.css'
 import './css/style.scss'
+import './css/animate.min.css'
 
 ReactDOM.render(
   <React.StrictMode>
