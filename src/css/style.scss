@@ -1,0 +1,22 @@
+@import "_value";
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@400;700&display=swap');
+
+body, html {
+    color:$color-white;
+}
+
+body {
+    background-color: $color-red;
+}
+
+body, html, p, ul, form, figure, label {
+    margin: 0;
+    padding: 0;
+}
+
+
+@import "_font";
+@import "_form";
+@import "_nav";
+@import "_btn";
+@import "_content";

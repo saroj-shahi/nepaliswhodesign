@@ -1,0 +1,42 @@
+.nav {
+    &-logo {
+        position: absolute;
+    }
+
+    &-star {
+        position: absolute;
+        transition: $transition;
+        opacity: 0.3;
+        margin-top: -5rem;
+
+        @media only screen and (min-width: 1024px) {
+            &.normal {
+                transform: scale(1);
+            }
+
+            &.oversized {
+                transform: scale(5);
+            }
+        }
+
+        @media only screen and (max-width: $viewport) {
+            margin-top: -15vh;
+            margin-left: -10vh;
+        }
+
+        &.animated {
+            animation: rotate 15s infinite linear;
+        }
+    }
+
+    &-strip {
+        background-color: $color-black;
+        display: inline-block;
+    }
+}
+
+
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}

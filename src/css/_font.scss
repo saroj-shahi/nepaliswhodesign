@@ -1,0 +1,42 @@
+body, input, textarea, select, button {
+    font-family: 'Jura', sans-serif;
+    font-size: $font-body;
+}
+
+a {
+    color: $color-white;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 0;
+    line-height: 100%;
+}
+
+.title {
+    &-1 {
+        font-size: $font-title-1;
+    }
+    &-2 {
+        font-size: $font-title-2;
+    }
+    &-3 {
+        font-size: $font-title-3;
+    }
+    &-4 {
+        font-size: $font-body-lg;
+    }
+    
+}
+
+.text {
+    &-uppercase {
+        text-transform: uppercase;
+    }
+    &-lowercase {
+        text-transform: lowercase;
+    }
+    &-error {
+        color:$color-red;
+    }
+}

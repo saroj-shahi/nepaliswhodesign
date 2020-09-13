@@ -1,0 +1,106 @@
+.form {
+    &-group {
+        background-color: darken($color: $color-white, $amount: 5);
+        border: 1px solid rgba($color-white, 0.6);
+        color: $color-black;
+        padding: $ruler;
+        display: block;
+        box-sizing: border-box;
+        margin-bottom: $ruler*2;
+        box-shadow: $ruler/4 $ruler/4 0 rgba($color: $color-black, $alpha: 0.2);
+        transition: $transition;
+
+        &:focus-within {
+            box-shadow: $ruler/2 $ruler/2 0 rgba($color: $color-black, $alpha: 0.4);
+            border-color: $color-white;
+
+            .form-label {
+                color: $color-black;
+            }
+
+            .form-icon {
+                opacity: 1;
+            }
+
+        }
+    }
+
+    label {
+        display: block;
+    }
+
+    &-label {
+        display: block;
+        font-size: $font-body-sm;
+        text-transform: uppercase;
+        margin-bottom: $ruler/4;
+        transition: $transition;
+        color: $color-gray;
+    }
+
+
+    &-control {
+        background-color: transparent;
+        border: 0;
+        outline: 0;
+        width: 100%;
+        box-sizing: border-box;
+        resize: vertical;
+        font-size: $font-body-lg;
+        color: $color-black;
+
+        &[type="file"] {
+            opacity: 0;
+            display: block;
+            position: absolute;
+        }
+    }
+
+    &-hint {
+        color: $color-gray;
+    }
+
+    &-icon {
+        float: right;
+        margin-top: -1.2rem;
+        opacity: 0.3;
+    }
+
+    &-check {
+        &-group {
+            display: inline-block;
+        }
+
+        &-input {
+            position: absolute;
+            opacity: 0;
+
+            &:checked + span {
+                color:$color-white;
+                background-color: $color-black;
+                border-color: $color-black;
+                box-shadow: $ruler/4 $ruler/4 0 rgba($color: $color-black, $alpha: 0.2);
+            }
+        }
+
+        &-label {
+            margin: 0 $ruler/2 $ruler/1.5 0;
+            padding: $ruler/1.5 $ruler;
+            position: relative;
+            border: 1px solid $color-gray;
+            display: inline-block;
+            cursor: pointer;
+            box-sizing: border-box;
+            transition: $transition;
+        }
+    }
+
+
+    &-img {
+        width: 128px;
+    }
+}
+
+.clickable {
+    cursor: pointer;
+}
