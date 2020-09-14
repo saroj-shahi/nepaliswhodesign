@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
+
 import axios from 'axios'
 import { apiPath } from '../data/config'
 import { disciplines } from '../data/disciplines'
@@ -27,19 +29,29 @@ class Profile extends React.Component {
         this.loadPeople = this.loadPeople.bind(this)
     }
 
+    componentDidUpdate (prevProps) {
+        if(this.props.location.pathname !== prevProps.location.pathname) {
+            let { location: { pathname } } = this.props
+            this.loadPeople(pathname)
+        }
+       
+    }
+
     componentDidMount () {
         let { location: { pathname } } = this.props
-        let tagName = (pathname.indexOf("profile") >= 1) ? pathname : undefined
-        tagName = (tagName)? tagName.replace("/profile/", "") : undefined
-        this.loadPeople(tagName)
+        this.loadPeople(pathname)
     }
 
 
     loadPeople = (tag) => {
+
+        let tagName = (tag.indexOf("profile") >= 1) ? tag : undefined
+        tagName = (tagName)? tagName.replace("/profile/", "") : undefined
+
         this.setState({ isLoading : true })
         this.props.setIsLoading({ isLoading: true })
 
-        axios.get( apiPath + "feed/profile/" + tag )
+        axios.get( apiPath + "feed/profile/" + tagName )
         .then(response => { 
             this.setState({ 
                 isLoading: false,
@@ -140,4 +152,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Profile);
+export default withRouter(connect(null, mapDispatchToProps)(Profile));

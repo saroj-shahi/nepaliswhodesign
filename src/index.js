@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { BrowserRouter } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
 
@@ -9,16 +9,20 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ScrollTop from "./components/ScrollTop"
 
+import { createBrowserHistory } from "history";
+
 import './css/bootstrap-grid.min.css'
 import './css/style.scss'
 import './css/animate.min.css'
 
+const appHistory = createBrowserHistory();
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <Router history={ appHistory }>
         <ScrollTop><App /></ScrollTop>
-      </BrowserRouter>
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
