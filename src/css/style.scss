@@ -1,5 +1,4 @@
 @import "_value";
-@import url('https://fonts.googleapis.com/css2?family=Jura:wght@400;700&display=swap');
 
 body, html {
     color:$color-white;
@@ -12,6 +11,10 @@ body {
 body, html, p, ul, form, figure, label {
     margin: 0;
     padding: 0;
+}
+
+.z-100 {
+    z-index: 1000;
 }
 
 

@@ -43,6 +43,7 @@
 
     &-name {
         font-size: $font-body-lg;
+        font-weight: 600;
         @media only screen and (min-width: $viewport) {
             padding: $ruler 0 $ruler/2 0;
         }

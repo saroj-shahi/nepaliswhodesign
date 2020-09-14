@@ -26,6 +26,7 @@ export default class UserCard extends React.Component {
                     <img src={ Arrow } alt="arrow" />
                 </span>
                 <p className="card-name text-lowercase">{ data ? data.name : null }</p>
+                { data.website && <small className="text-uppercase dim">{ data ? data.website : null }</small> }
                 </div>
             </ScrollAnimation>
         </NavLink>

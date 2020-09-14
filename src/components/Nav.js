@@ -48,15 +48,17 @@ class Nav extends React.Component {
 
         return <header className="container py-5" role="navigation" aria-label="Main Navigation">
             <div className="row">
-                <div className="col-8">
+                <div className="col-md-auto ml-auto order-md-2 d-flex mb-4 mb-md-0 text-right z-100">
+                    <Link to="/about" className="btn btn-send">about</Link>
+                    <Link to="/submit" className="ml-3 btn btn-send">submit</Link>
+                </div>
+
+                <div className="col-md-8 order-md-1 mb-4 mb-md-0">
                     <img src={ Star } className={ `nav-star ${ starSize } ${ isLoading ? 'animated' : '' } ` } alt="Star" />
                     <div className="nav-logo">
-                        <Link to="/" className="d-block title-2">nepalis<br />who design</Link>
+                        <Link to="/" className="d-block title-2"><strong className="d-block">nepalis</strong>who design</Link>
                         { tagName && <div className="nav-strip title-2 text-lowercase">{ getDiscipline(tagName) }</div> }
                     </div>
-                </div>
-                <div className="col-auto ml-auto">
-                    <Link to="/submit" className="btn btn-send">submit</Link>
                 </div>
             </div>
         </header>

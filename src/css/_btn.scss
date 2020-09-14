@@ -5,6 +5,7 @@
     font-size: $font-body;
     display: inline-block;
     cursor: pointer;
+    font-weight: 600;
 
 
     &-send {
@@ -53,6 +54,14 @@
 
         }
     }
+
+    &-disabled {
+        opacity: 0.6;
+        cursor:not-allowed;
+        &:hover {
+            box-shadow: $box-shadow-sm;
+        }
+    }
 }
 
 .social-buttons {
@@ -65,4 +74,15 @@
     .btn:first-child {
         border-left: 1px solid $color-white;
     }
+}
+
+
+.legend-rotate {
+    animation: rotate 3s infinite linear;
+}
+
+
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
 }

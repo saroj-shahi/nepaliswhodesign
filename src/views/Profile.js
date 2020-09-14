@@ -24,7 +24,7 @@ class Profile extends React.Component {
         super(props)
         this.state = {
             isLoading: false,
-            people : []
+            people : undefined
         }
         this.loadPeople = this.loadPeople.bind(this)
     }
@@ -48,7 +48,7 @@ class Profile extends React.Component {
         let tagName = (tag.indexOf("profile") >= 1) ? tag : undefined
         tagName = (tagName)? tagName.replace("/profile/", "") : undefined
 
-        this.setState({ isLoading : true })
+        this.setState({ isLoading : true, people: undefined })
         this.props.setIsLoading({ isLoading: true })
 
         axios.get( apiPath + "feed/profile/" + tagName )
@@ -140,7 +140,9 @@ class Profile extends React.Component {
 
         </div>
     
-        } 
+        } else {
+            return null
+        }
     }
 }
 
