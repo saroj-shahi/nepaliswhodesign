@@ -71,7 +71,7 @@ class Profile extends React.Component {
                 </ScrollAnimation>
                 </div>
                 <div className="col-md-7">
-                    { image && <img src={ image } alt={ people.name } className="img-banner animate__animated animate__zoomInUp" /> }
+                    { image && <img src={ image } alt={ people.name } className="img-banner animate__animated animate__fadeIn" /> }
                 </div>
             </div>
 

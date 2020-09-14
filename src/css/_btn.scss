@@ -56,7 +56,11 @@
 }
 
 .social-buttons {
-    box-shadow:  $box-shadow-sm;
+    //box-shadow:  $box-shadow-sm;
+
+    .btn {
+        box-shadow:  $box-shadow-sm;
+    }
     
     .btn:first-child {
         border-left: 1px solid $color-white;

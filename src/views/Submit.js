@@ -32,17 +32,21 @@ class Submit extends React.Component {
         let theForm = document.getElementById("theFormData")
         let theFormData = new FormData(theForm)
         this.props.setIsLoading({ isLoading: true })
+        this.setState({ isLoading: true })
 
         axios.post( apiPath + "submit", theFormData)
             .then(response => { 
                 if(response.data.status === "error") {
-                    this.setState({ error: response.data.errors, isLoading: false })
+                    this.setState({ error: response.data.errors})
                 } else {
-                    this.setState({ isSubmitted: true, isLoading: false })
+                    this.setState({ isSubmitted: true })
                 }
              })
            .catch(error => { this.setState({ error }) })
+
            this.props.setIsLoading({ isLoading: false })
+           this.setState({ isLoading: false })
+           
     }
 
     closeAction = () => {
