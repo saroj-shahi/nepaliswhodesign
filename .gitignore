@@ -46,3 +46,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 src/data/config.js
+src/data/config.js
