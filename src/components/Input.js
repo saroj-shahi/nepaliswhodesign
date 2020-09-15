@@ -24,7 +24,7 @@ export default class Input extends React.Component {
     }
 
     render (){
-        let { label, name, hint, type, required, rows, options, placeholder, min, max, accept, formIcon } = this.props
+        let { label, name, hint, type, isRequired, rows, options, placeholder, min, max, accept, formIcon } = this.props
         let { imageURL } = this.state
         let inputBox
 
@@ -39,13 +39,14 @@ export default class Input extends React.Component {
             break;
 
             case "textarea" : 
-                inputBox = <textarea className="form-control" name={ name } id={ name } rows={ rows } placeholder={ placeholder }  required={ required } ></textarea>
+                inputBox = <textarea className="form-control" name={ name } id={ name } rows={ rows } placeholder={ placeholder } required={ isRequired } ></textarea>
             break;
 
             default: 
-                inputBox = <input className="form-control" name={ name } id={ name } type={ type } required={ required } placeholder={ placeholder } min={ min } max={ max } accept={ accept } onChange={ this.handleChange } />
+                inputBox = <input className="form-control" name={ name } id={ name } type={ type } required={ isRequired } placeholder={ placeholder } min={ min } max={ max } accept={ accept } onChange={ this.handleChange } />
             break;
         }
+
         return <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } delay={ 50 }><div className={ `form-group` }>
             <label className={type==='file'?'clickable': null} htmlFor={ name }>
                 <div className="form-label">{ label }</div>
