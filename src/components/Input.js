@@ -24,7 +24,7 @@ export default class Input extends React.Component {
     }
 
     render (){
-        let { label, name, hint, type, isRequired, rows, options, placeholder, min, max, accept, formIcon } = this.props
+        let { label, name, hint, type, isRequired, rows, options, placeholder, min, max, accept, formIcon, prefix } = this.props
         let { imageURL } = this.state
         let inputBox
 
@@ -54,8 +54,12 @@ export default class Input extends React.Component {
                                 <img src={ imageURL } className="form-img mr-4" alt="Preview" />
                                 <button type="button" className="btn btn-filled" onClick={ this.clearPhoto }>Remove</button>
                         </div> }
-                { formIcon && <img src={ formIcon } className="form-icon" alt="Please select" />}
-                { inputBox }
+                <div className="d-flex align-items-center">
+                    { prefix && <div className="form-prefix">{ prefix }</div> }
+                    { inputBox && <div className="flex-fill">{ inputBox }</div> }
+                    { formIcon && <img src={ formIcon } className="form-icon" alt="Please select" />}
+                </div>
+
                 { hint && <small className="form-hint d-block mt-2">{ hint }</small>}
             </label>
         </div></ScrollAnimation>

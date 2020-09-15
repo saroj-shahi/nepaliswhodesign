@@ -90,17 +90,17 @@ class Submit extends React.Component {
                         <Input label="Introduce yourself in 100 characters" name="intro" type="textarea" rows={ 2 } isRequired="required" placeholder="eg. I am an experienced designer who has..." />
                         <Input label="Upload a photo (preferably a wide-ish shot)" hint="Please only upload wide .jpg images (recommended 1400x1000px) below 2 megabytes" name="photo" type="file" isRequired="required" accept="image/jpeg" formIcon={ FormIcon } />
 
-                        <Input label="How many years of total experience do you have?" hint="Please enter number of years" name="experience" type="number" isRequired="required" min="1" max="15" placeholder="No. of years: eg. 4" />
+                        <Input label="How many years of total experience do you have?" hint="Please enter number of years" name="experience" type="number" isRequired="required" min="1" max="25" placeholder="No. of years: eg. 4" />
                         <Input label="Describe the work you do in few paragraphs" name="bio" type="textarea" rows={ 5 } isRequired="required" placeholder="Write in detail who you are, what you do and why you do it..." />
 
                         <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false }>
                             <h3 className="mt-5 mb-3">Your online profiles (leave blank if you don’t have one)</h3>
                         </ScrollAnimation>
 
-                        <Input label="Personal Website URL" name="website" type="url" placeholder="https://" />
-                        <Input label="Facebook Page URL" hint="Only pages are accepted. No personal profile, groups or events." name="facebook" type="url" placeholder="https://" />
-                        <Input label="Twitter URL" hint="Only personal accounts are accepted. No brand or community accounts." name="twitter" type="url" placeholder="https://" />
-                        <Input label="Dribbble URL" name="dribbble" type="url" placeholder="https://" />
+                        <Input label="Personal Website URL" name="website" type="text" prefix="https://" placeholder="yourdomain.com" />
+                        <Input label="Facebook Page" hint="Only pages are accepted. No personal profile, groups or events." name="facebook" type="text" prefix="https://facebook.com/" placeholder="username" />
+                        <Input label="Twitter" hint="Only personal accounts are accepted. No brand or community accounts." name="twitter" type="text" prefix="https://twitter.com/" placeholder="username" />
+                        <Input label="Dribbble" name="dribbble" type="text" prefix="https://dribbble.com/" placeholder="username" />
 
                         <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false }>
                             <button type="submit" name="submit" value="1" className={ `btn btn-send btn-filled btn-lg ${ isSending ? 'btn-disabled':null}` } disabled={ isSending }>

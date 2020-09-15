@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios'
 import { apiPath } from '../data/config'
 import { disciplines } from '../data/disciplines'
+import { social } from '../data/social'
 import ScrollAnimation from 'react-animate-on-scroll'
 
 import { connect } from 'react-redux';
@@ -63,7 +64,6 @@ class Profile extends React.Component {
     
     render (){
         let { people, isLoading } = this.state
-        let social = ["website", "facebook", "twitter", "dribbble"]
 
         if(!isLoading && !people) {
             return <NotFound title="This designer is probably not a designer" subtitle="This designer doesn't exist or has probably moved on to other professions." emoji="🤔" />
@@ -114,10 +114,10 @@ class Profile extends React.Component {
 
             <div className="row social-buttons no-gutters mb-5">
                 { social.map((item, index) => {
-                    if(people[item]) {
+                    if(people[item.type]) {
                         return <div className="col" key={ index }>
                             <ScrollAnimation animateIn="animate__fadeInDown" initiallyVisible={ false } delay={ 100*index }>
-                                <a href={ people[item] } target="_blank" rel="noopener noreferrer" className="btn btn-social">{ item }</a>
+                                <a href={ item.prefix + people[item.type] } target="_blank" rel="noopener noreferrer" className="btn btn-social">{ item.type }</a>
                             </ScrollAnimation>
                         </div>
                     } else {

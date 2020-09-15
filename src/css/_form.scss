@@ -56,13 +56,17 @@
         }
     }
 
+    &-prefix {
+        font-size: $font-body-lg;
+        color: $color-gray;
+        opacity: 0.4;
+    }
+
     &-hint {
         color: $color-gray;
     }
 
     &-icon {
-        float: right;
-        margin-top: -1.2rem;
         opacity: 0.3;
     }
 
