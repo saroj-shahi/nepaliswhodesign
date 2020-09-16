@@ -8,6 +8,7 @@ import { disciplines } from '../data/disciplines'
 import { connect } from 'react-redux';
 import { setIsLoading } from '../store/action'
 
+import HelmetData from '../components/HelmetData'
 import Input from '../components/Input'
 import Dialog from '../components/Dialog'
 
@@ -58,6 +59,8 @@ class Submit extends React.Component {
     render (){
         let { error, isSending, isSubmitted } = this.state
         return <div className="container">
+
+            <HelmetData title="Submit a Nomination" />
 
             { error && <Dialog message={ error } button="Retry" closeAction={ this.closeAction } /> }
 

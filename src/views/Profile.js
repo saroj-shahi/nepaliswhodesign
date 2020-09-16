@@ -11,7 +11,7 @@ import ScrollAnimation from 'react-animate-on-scroll'
 import { connect } from 'react-redux';
 import { setIsLoading } from '../store/action'
 
-
+import HelmetData from '../components/HelmetData'
 import UserCard from '../components/UserCard'
 import NotFound from '../components/NotFound'
 
@@ -75,6 +75,9 @@ class Profile extends React.Component {
             let yearsince = new Date().getFullYear();
 
             return <div className="container">
+
+            <HelmetData title={ people.name } description={ people.intro } image={ image } />
+
             <div className="row align-items-center">
                 <div className="col-md-5 my-5 my-md-0">
                 <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } delay={100}>

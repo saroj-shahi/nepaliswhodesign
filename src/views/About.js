@@ -1,10 +1,13 @@
 import React from 'react'
 import {Siblings} from '../data/siblings'
-
+import HelmetData from '../components/HelmetData'
 
 export default class About extends React.Component {
     render () {
         return <div className="container my-5">
+            
+            <HelmetData title="About" />
+
             <div className="row">
                 <div className="col-lg-8 offset-lg-3">
                     <h1 className="title-1">about</h1>

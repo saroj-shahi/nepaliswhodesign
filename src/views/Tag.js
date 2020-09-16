@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { apiPath } from '../data/config'
 
-
+import HelmetData from '../components/HelmetData'
 import { connect } from 'react-redux';
 import { setIsLoading } from '../store/action'
 
@@ -16,7 +16,8 @@ class Tag extends React.Component {
         super(props)
         this.state = {
             isLoading: false,
-            people : []
+            people : [],
+            tag: undefined
         }
         this.loadPeople = this.loadPeople.bind(this)
     }
@@ -25,7 +26,7 @@ class Tag extends React.Component {
         let { location: { pathname } } = this.props
         let tagName = (pathname.indexOf("tag") >= 1) ? pathname : undefined
         tagName = (tagName)? tagName.replace("/tag/", "") : undefined
-
+        this.setState({ tag: tagName })
         this.loadPeople(tagName)
     }
 
@@ -43,12 +44,14 @@ class Tag extends React.Component {
     }
     
     render (){
-        let { isLoading, people } = this.state
+        let { isLoading, people, tag } = this.state
+
 
         if(!isLoading && !people) {
             return <div className="mt-5"><NotFound title="No designers do this?" subtitle="Looks like there are no designers available with this skill." emoji="🤔" /></div>
         } else {
             return <div className="container">
+                <HelmetData title={ `Who design ` + tag } />
                 <div className="row py-5"><div className="col-12 mb-5"></div>
                         { people && people.map((item, index) => <div className="col-lg-4 col-sm-6" key={ index } >
                         <UserCard data={ item } /></div>) }
