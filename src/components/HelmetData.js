@@ -11,7 +11,7 @@ render () {
 
     let pageTitle = (title) ? title + " - " + siteName : siteName;
     let pageDescription = ( description ) ? description : "A repository to celebrate the work of talented Nepali designers and showcase it to the world.";
-    let pageBanner = { image } ? siteURL + image : siteURL + "banner.jpg"
+    let pageBanner = { image } ? image : siteURL + "banner.jpg"
 
     return   <Helmet>
         <title>{ pageTitle }</title>
