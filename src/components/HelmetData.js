@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet'
 export default class HelmetData extends React.Component {
 render () {
 
-    let siteName = "Nepali Who Designs"
+    let siteName = "Nepalis Who Design"
     let siteURL = "https://nepaliswho.design/"
 
     let { title, description, image } = this.props

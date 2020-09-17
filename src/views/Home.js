@@ -6,6 +6,7 @@ import ScrollAnimation from 'react-animate-on-scroll'
 import { connect } from 'react-redux';
 import { setIsLoading } from '../store/action'
 
+import HelmetData from '../components/HelmetData'
 import UserCard from '../components/UserCard'
 import NotFound from '../components/NotFound'
 
@@ -44,6 +45,8 @@ class Home extends React.Component {
             return <NotFound title="Where did all the designers go?" subtitle="All the designers were abducted during an alien invasion. We're still figuring out what happened. ¯\_(ツ)_/¯" emoji="👽" />
         } else {
             return <div className="container">
+                <HelmetData title="Nepalis Who Design - Designers" />
+
                 <div className="row py-5">
                     { people && people.map((item, index) => <div className="col-lg-4 col-sm-6" key={ index } >
                     <ScrollAnimation animateIn="animate__fadeInUp">
