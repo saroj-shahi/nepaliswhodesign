@@ -80,7 +80,7 @@ class Profile extends React.Component {
 
             <div className="row align-items-center">
                 <div className="col-md-5 my-5 my-md-0">
-                <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } delay={100}>
+                <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } delay={100} animateOnce={true}>
                     <h1 className="title-1 mb-4 text-lowercase">{ people.name }</h1>
                     { people.experience && <p className="text-uppercase">Designer since { yearsince - people.experience }</p> }
                 </ScrollAnimation>
@@ -92,7 +92,7 @@ class Profile extends React.Component {
 
             <div className="row my-5">
                 <div className="col-lg-8 offset-lg-1">
-                <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false }>
+                <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } animateOnce={true}>
                     <p className="title-3">{ people.intro }</p>
                 </ScrollAnimation>
                 </div>
@@ -108,7 +108,7 @@ class Profile extends React.Component {
                 </div>
                 
                 <div className="col-lg-7">
-                    <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false }>
+                    <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } animateOnce={true}>
                         <p className="title-4">{ people.bio }</p>
                     </ScrollAnimation>
                 </div>
@@ -119,7 +119,7 @@ class Profile extends React.Component {
                 { social.map((item, index) => {
                     if(people[item.type]) {
                         return <div className="col" key={ index }>
-                            <ScrollAnimation animateIn="animate__fadeInDown" initiallyVisible={ false } delay={ 100*index }>
+                            <ScrollAnimation animateIn="animate__fadeInDown" initiallyVisible={ false } delay={ 100*index } animateOnce={true}>
                                 <a href={ item.prefix + people[item.type] } target="_blank" rel="noopener noreferrer" className="btn btn-social">{ item.type }</a>
                             </ScrollAnimation>
                         </div>

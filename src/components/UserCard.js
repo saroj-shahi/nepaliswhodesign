@@ -6,6 +6,17 @@ import ScrollAnimation from 'react-animate-on-scroll'
 import Arrow from "../img/arrow.svg"
 
 export default class UserCard extends React.Component {
+
+    // constructor(props) {
+    //     super(props)
+    //     this.state = {
+    //         imgLoaded: false
+    //     }
+    //     this.handleLoaded = this.handleLoaded.bind(this)
+    // }
+    // handleLoaded () {
+    //     this.setState({ imgLoaded: true })
+    // }
     
     render () {
         let { data } = this.props
@@ -16,9 +27,9 @@ export default class UserCard extends React.Component {
             <ScrollAnimation animateIn="animate__fadeIn" initiallyVisible={ false }>
                 <div className="card-content">
 
-                <figure className="card-img-wrapper">
-                    <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } delay={100}>
-                        <img src={ image } className="card-img" alt={ data ? data.name : null } />
+                <figure className="card-img-wrapper bg-white">
+                    <ScrollAnimation animateIn={ `animate__fadeInUp` } animatePreScroll={ true } delay={100} animateOnce={true}>
+                        <img src={ image } className="card-img" alt={ data ? data.name : null }/>
                     </ScrollAnimation>
                 </figure>
 

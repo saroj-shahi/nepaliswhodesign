@@ -47,7 +47,8 @@ export default class Input extends React.Component {
             break;
         }
 
-        return <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } delay={ 50 }><div className={ `form-group` }>
+        return <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } delay={ 50 } animateOnce={true}>
+            <div className={ `form-group` }>
             <label className={type==='file'?'clickable': null} htmlFor={ name }>
                 <div className="form-label">{ label }</div>
                 { imageURL && <div className="d-flex align-items-start mt-3">

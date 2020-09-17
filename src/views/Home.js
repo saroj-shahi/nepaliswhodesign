@@ -49,7 +49,7 @@ class Home extends React.Component {
 
                 <div className="row py-5">
                     { people && people.map((item, index) => <div className="col-lg-4 col-sm-6" key={ index } >
-                    <ScrollAnimation animateIn="animate__fadeInUp">
+                    <ScrollAnimation animateIn="animate__fadeInUp" animateOnce={true} delay={ 20 }>
                         <UserCard data={ item } />
                     </ScrollAnimation>    
                     </div>) }
