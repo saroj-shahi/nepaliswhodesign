@@ -88,6 +88,7 @@ class Submit extends React.Component {
                     <h1 className="title-1 mb-4">submit</h1>
                     <form encType="multipart/form-data" method="post" name="form" id="theFormData" onSubmit={ this.sendForm } aria-label="Submit entry" disabled={ isSending }>
                         <Input label="Your name" name="name" type="text" placeholder="eg. Ram Bahadur" isRequired="required" />
+                        <Input label="Your email address" name="email" type="email" placeholder="eg. you@yourdomain.com" hint="We will contact you if we need more information from you." isRequired="required" />
                         <Input label="Select your expertise (recommended up to 3)" name="expertise[]" type="chooser" isRequired="required" options={ disciplines } />
 
                         <Input label="Introduce yourself in 100 characters" name="intro" type="textarea" rows={ 2 } isRequired="required" placeholder="eg. I am an experienced designer who has..." />
@@ -102,6 +103,7 @@ class Submit extends React.Component {
 
                         <Input label="Personal Website URL" name="website" type="text" prefix="https://" placeholder="yourdomain.com" />
                         <Input label="Facebook Page" hint="Only pages are accepted. No personal profile, groups or events." name="facebook" type="text" prefix="https://facebook.com/" placeholder="username" />
+                        <Input label="Behance" name="behance" type="text" prefix="https://behance.net/" placeholder="username" />
                         <Input label="Twitter" hint="Only personal accounts are accepted. No brand or community accounts." name="twitter" type="text" prefix="https://twitter.com/" placeholder="username" />
                         <Input label="Dribbble" name="dribbble" type="text" prefix="https://dribbble.com/" placeholder="username" />
 

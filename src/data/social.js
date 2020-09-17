@@ -8,6 +8,10 @@ export const social = [
         prefix: "https://facebook.com/"
     },
     { 
+        type: "behance",
+        prefix: "https://behance.net/"
+    },
+    { 
         type: "twitter",
         prefix: "https://twitter.com/"
     }, 

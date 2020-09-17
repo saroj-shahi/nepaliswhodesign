@@ -43,13 +43,15 @@ export default class Input extends React.Component {
             break;
 
             default: 
-                inputBox = <input className="form-control" name={ name } id={ name } type={ type } required={ isRequired } placeholder={ placeholder } min={ min } max={ max } accept={ accept } onChange={ this.handleChange } />
+                inputBox = <input className={ (type!=="file") ? "form-control" : "d-none" } name={ name } id={ name } type={ type } required={ isRequired } placeholder={ placeholder } min={ min } max={ max } accept={ accept } onChange={ this.handleChange } />
             break;
         }
 
         return <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } delay={ 50 } animateOnce={true}>
-            <div className={ `form-group` }>
-            <label className={type==='file'?'clickable': null} htmlFor={ name }>
+            <div className={ `form-group d-flex align-items-start` }>
+            { formIcon && <img src={ formIcon } className="form-icon mr-3" alt="Please select" />}
+
+            <label className={ `flex-fill ${type==='file'?'clickable': null}`} htmlFor={ name }>
                 <div className="form-label">{ label }</div>
                 { imageURL && <div className="d-flex align-items-start mt-3">
                                 <img src={ imageURL } className="form-img mr-4" alt="Preview" />
@@ -58,7 +60,6 @@ export default class Input extends React.Component {
                 <div className="d-flex align-items-center">
                     { prefix && <div className="form-prefix">{ prefix }</div> }
                     { inputBox && <div className="flex-fill">{ inputBox }</div> }
-                    { formIcon && <img src={ formIcon } className="form-icon" alt="Please select" />}
                 </div>
 
                 { hint && <small className="form-hint d-block mt-2">{ hint }</small>}
