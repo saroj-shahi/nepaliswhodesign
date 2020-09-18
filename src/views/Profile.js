@@ -73,19 +73,32 @@ class Profile extends React.Component {
             let image = people ? apiPath + "cdn/photos/" + people.photourl : null
             let expertise = (people.expertise) ? people.expertise.toString().split(",") : []
             let yearsince = new Date().getFullYear();
+            let aspectRatio
+
+            switch(people.aspectRatio) {
+                case "portait" :
+                    aspectRatio = "col-md-4"
+                break;
+                case "landscape" :
+                    aspectRatio = "col-md-7"
+                break;
+                default :
+                    aspectRatio = "col-md-5"
+                break;
+            }
 
             return <div className="container">
 
             <HelmetData title={ people.name } description={ people.intro } image={ image } />
 
-            <div className="row align-items-center">
+            <div className="row align-items-center justify-content-center">
                 <div className="col-md-5 my-5 my-md-0">
                 <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } delay={100} animateOnce={true}>
                     <h1 className="title-1 mb-4 text-lowercase">{ people.name }</h1>
                     { people.experience && <p className="text-uppercase">Designer since { yearsince - people.experience }</p> }
                 </ScrollAnimation>
                 </div>
-                <div className="col-md-7">
+                <div className={ aspectRatio }>
                     { image && <img src={ image } alt={ people.name } className="img-banner animate__animated animate__fadeIn" /> }
                 </div>
             </div>
@@ -93,23 +106,24 @@ class Profile extends React.Component {
             <div className="row my-5">
                 <div className="col-lg-8 offset-lg-1">
                 <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } animateOnce={true}>
-                    <p className="title-3">{ people.intro }</p>
+                    <p className="title-3">{ people.intro && people.intro.split('\n').map(i => {
+                                return <p className="mb-3">{i}</p>
+                            }) }</p>
                 </ScrollAnimation>
                 </div>
 
                 <div className="col-12 mb-5"></div>
 
-                <div className="col-lg-3 offset-lg-1 mb-3 mb-lg-0">
+                <div className="col-lg-8 offset-lg-1 mb-3 mb-lg-0">
 
                     { expertise && expertise.map((item, index) => 
                         <Link to={`/tag/${item}`} key={ index } className={`btn btn-send ${ index%2 ? 'mx-3' : '' } mb-3`}>{ getDiscipline(item) }</Link>
                     )}
 
-                </div>
-                
-                <div className="col-lg-7">
                     <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } animateOnce={true}>
-                        <p className="title-4">{ people.bio }</p>
+                        <p className="title-4 mt-4">{ people.bio && people.bio.split('\n').map(i => {
+                                return <p className="mb-3">{i}</p>
+                            }) }</p>
                     </ScrollAnimation>
                 </div>
             </div>
