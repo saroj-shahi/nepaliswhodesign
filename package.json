@@ -16,6 +16,8 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-scroll-parallax": "^2.3.4",
+    "react-simple-infinite-scroll": "0.0.1",
     "redux": "^4.0.5",
     "sass-loader": "^10.0.2"
   },

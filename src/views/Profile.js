@@ -6,7 +6,9 @@ import axios from 'axios'
 import { apiPath } from '../data/config'
 import { disciplines } from '../data/disciplines'
 import { social } from '../data/social'
+
 import ScrollAnimation from 'react-animate-on-scroll'
+import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
 
 import { connect } from 'react-redux';
 import { setIsLoading } from '../store/action'
@@ -14,6 +16,7 @@ import { setIsLoading } from '../store/action'
 import HelmetData from '../components/HelmetData'
 import UserCard from '../components/UserCard'
 import NotFound from '../components/NotFound'
+
 
 function getDiscipline(item) {
     return disciplines.find( discipline => discipline.path === item ).title
@@ -59,6 +62,11 @@ class Profile extends React.Component {
                 people: response.data.data[0]
             })
             this.props.setIsLoading({ isLoading: false })
+        }).catch(e => {
+            this.setState({
+                isLoading: false,
+                people: null
+            })
         })
     }
     
@@ -87,28 +95,32 @@ class Profile extends React.Component {
                 break;
             }
 
-            return <div className="container">
+            return <ParallaxProvider><div className="container">
 
             <HelmetData title={ people.name } description={ people.intro } image={ image } />
 
             <div className="row align-items-center justify-content-center">
-                <div className="col-md-5 my-5 my-md-0">
+                <div className="col-md-5 my-5 my-md-0 z-100">
                 <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } delay={100} animateOnce={true}>
-                    <h1 className="title-1 mb-4 text-lowercase">{ people.name }</h1>
-                    { people.experience && <p className="text-uppercase">Designer since { yearsince - people.experience }</p> }
+                    <Parallax y={[0, 20]} className="z-100">
+                        <h1 className="title-1 mb-4 text-lowercase">{ people.name }</h1>
+                        { people.experience && <p className="text-uppercase">Designer since { yearsince - people.experience }</p> }
+                    </Parallax>
                 </ScrollAnimation>
                 </div>
-                <div className={ aspectRatio }>
-                    { image && <img src={ image } alt={ people.name } className="img-banner animate__animated animate__fadeIn" /> }
+                <div className={ `my-5 ${aspectRatio}` } >
+                    <Parallax y={[0, 50]}>
+                        { image && <img src={ image } alt={ people.name } className="img-banner animate__animated animate__fadeIn" /> }
+                    </Parallax>
                 </div>
             </div>
 
             <div className="row my-5">
                 <div className="col-lg-8 offset-lg-1">
                 <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } animateOnce={true}>
-                    <p className="title-3">{ people.intro && people.intro.split('\n').map(i => {
-                                return <p className="mb-3">{i}</p>
-                            }) }</p>
+                    <div className="title-3">{ people.intro && people.intro.split('\n').map((i,index) => {
+                        return <p className="mb-3" key={ index }>{i}</p>
+                    }) }</div>
                 </ScrollAnimation>
                 </div>
 
@@ -121,9 +133,9 @@ class Profile extends React.Component {
                     )}
 
                     <ScrollAnimation animateIn="animate__fadeInUp" initiallyVisible={ false } animateOnce={true}>
-                        <p className="title-4 mt-4">{ people.bio && people.bio.split('\n').map(i => {
-                                return <p className="mb-3">{i}</p>
-                            }) }</p>
+                        <div className="title-4 mt-4">{ people.bio && people.bio.split('\n').map((i, index) => {
+                                return <p className="mb-3" key={ index }>{i}</p>
+                        }) }</div>
                     </ScrollAnimation>
                 </div>
             </div>
@@ -149,13 +161,14 @@ class Profile extends React.Component {
                     <p className="text-uppercase">Similar designers</p>
                 </div>
 
-                { people.related && people.related.map((item, index) => <div className="col-lg-4 col-sm-6" key={ index }>
+                { people.related && people.related.map((item, index) => <Parallax className="col-lg-4 col-sm-6" key={ index } y={[0, 20*(index%2)]}>
                     <UserCard data={ item } />
-                </div>)}
+                </Parallax>)}
             </div> }
 
 
         </div>
+        </ParallaxProvider>
     
         } else {
             return null

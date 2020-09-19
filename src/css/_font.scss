@@ -41,6 +41,9 @@ h1, h2, h3, h4, h5 {
     &-error {
         color:$color-red;
     }
+    &-center {
+        text-align: center;
+    }
     &-external {
         background-image: url('../img/arrow.svg');
         background-position: right;

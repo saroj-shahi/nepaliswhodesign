@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import { apiPath } from '../data/config'
 
+import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
+import { InfiniteScroll } from 'react-simple-infinite-scroll'
 import HelmetData from '../components/HelmetData'
 import { connect } from 'react-redux';
 import { setIsLoading } from '../store/action'
@@ -17,6 +19,7 @@ class Tag extends React.Component {
         this.state = {
             isLoading: false,
             people : [],
+            cursor: 0,
             tag: undefined
         }
         this.loadPeople = this.loadPeople.bind(this)
@@ -33,29 +36,49 @@ class Tag extends React.Component {
     loadPeople = (tag) => {
         this.setState({ isLoading : true })
         this.props.setIsLoading({ isLoading: true })
-        axios.get( apiPath + "feed/tag/" + tag )
+        axios.get( apiPath + "feed/tag/" + tag +"?count=" + this.state.cursor )
         .then(response => { 
-            this.setState({ 
+            this.setState(state => ({ 
                 isLoading: false,
-                people: response.data.data
-            })
+                cursor: response.data.cursor,
+                people: [...state.people, ...response.data.data]
+            }))
             this.props.setIsLoading({ isLoading: false })
+        }).catch(e => {
+            this.setState({
+                isLoading: false,
+                people: null,
+                cursor: 0
+            })
         })
     }
     
     render (){
-        let { isLoading, people, tag } = this.state
+        let { isLoading, people, tag, cursor } = this.state
 
 
         if(!isLoading && !people) {
-            return <div className="mt-5"><NotFound title="No designers do this?" subtitle="Looks like there are no designers available with this skill." emoji="🤔" /></div>
+            return <div className="mt-5">
+                <NotFound title="No designers do this?" subtitle="Looks like there are no designers available with this skill." emoji="🤔" />
+            </div>
         } else {
             return <div className="container">
                 <HelmetData title={ `Who design ` + tag } />
-                <div className="row py-5"><div className="col-12 mb-5"></div>
-                        { people && people.map((item, index) => <div className="col-lg-4 col-sm-6" key={ index } >
-                        <UserCard data={ item } /></div>) }
-                </div>
+
+                <ParallaxProvider>
+                    <InfiniteScroll throttle={ 100 } threshold={ 300 } isLoading={ isLoading } hasMore={ !!cursor } onLoadMore={ this.loadPeople }>
+                        <div className="row py-5"><div className="col-12 mb-5"></div>
+                            { people && people.map((item, index) => <Parallax className="col-lg-4 col-sm-6" key={ index } y={[0, 20*(index%2)]}>
+                                <UserCard data={ item } />
+                            </Parallax>) }
+
+                            { isLoading && <div className="col-12 text-center"><div className="loader-inline"></div></div>}
+
+
+                        </div>                    
+                    </InfiniteScroll>
+                </ParallaxProvider>
+
             </div>
         }
     }

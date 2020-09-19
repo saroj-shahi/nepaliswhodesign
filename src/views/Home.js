@@ -1,10 +1,12 @@
 import React from 'react'
 import axios from 'axios'
-import { apiPath } from '../data/config'
+import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
+import { InfiniteScroll } from 'react-simple-infinite-scroll'
 
-import ScrollAnimation from 'react-animate-on-scroll'
 import { connect } from 'react-redux';
 import { setIsLoading } from '../store/action'
+
+import {apiPath} from '../data/config'
 
 import HelmetData from '../components/HelmetData'
 import UserCard from '../components/UserCard'
@@ -16,7 +18,8 @@ class Home extends React.Component {
         super(props)
         this.state = {
             isLoading: false,
-            people : []
+            people : [],
+            cursor: 0
         }
         this.loadPeople = this.loadPeople.bind(this)
     }
@@ -28,18 +31,25 @@ class Home extends React.Component {
     loadPeople = () => {
         this.setState({ isLoading : true })
         this.props.setIsLoading({ isLoading: true })
-        axios.get( apiPath )
-        .then(response => { 
-            this.setState({ 
-                isLoading: false,
-                people: response.data.data
+        axios.get( apiPath + "?count=" + this.state.cursor )
+            .then(response => { 
+                this.setState(state => ({ 
+                    isLoading: false,
+                    cursor: response.data.cursor,
+                    people: [...state.people, ...response.data.data]
+                }))
+                this.props.setIsLoading({ isLoading: false })
+            }).catch(e => {
+                this.setState({
+                    isLoading: false,
+                    people: null,
+                    cursor: 0
+                })
             })
-            this.props.setIsLoading({ isLoading: false })
-        })
     }
     
     render (){
-        let { isLoading, people } = this.state
+        let { isLoading, people, cursor } = this.state
 
         if(!isLoading && !people) {
             return <NotFound title="Where did all the designers go?" subtitle="All the designers were abducted during an alien invasion. We're still figuring out what happened. ¯\_(ツ)_/¯" emoji="👽" />
@@ -47,13 +57,18 @@ class Home extends React.Component {
             return <div className="container">
                 <HelmetData title="Nepalis Who Design - Designers" />
 
-                <div className="row py-5">
-                    { people && people.map((item, index) => <div className="col-lg-4 col-sm-6" key={ index } >
-                    <ScrollAnimation animateIn="animate__fadeInUp" animateOnce={true} delay={ 20 }>
-                        <UserCard data={ item } />
-                    </ScrollAnimation>    
-                    </div>) }
-                </div>
+                <ParallaxProvider>
+                    <InfiniteScroll throttle={ 100 } threshold={ 300 } isLoading={ isLoading } hasMore={ !!cursor } onLoadMore={ this.loadPeople }>
+                        <div className="row py-5">
+                            { people && people.map((item, index) => <Parallax className="col-lg-4 col-sm-6" key={ index } y={[0, 20*(index%2)]}>
+                                <UserCard data={ item } />
+                            </Parallax>) }
+
+                            { isLoading && <div className="col-12 text-center"><div className="loader-inline"></div></div>}
+
+                        </div>                    
+                    </InfiniteScroll>
+                </ParallaxProvider>
             </div>
         }
 
