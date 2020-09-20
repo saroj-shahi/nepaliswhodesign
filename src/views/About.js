@@ -30,6 +30,9 @@ export default class About extends React.Component {
 
                             <h3 className="title-4 mb-4 mt-5">I am new to this field, can I join?</h3>
                             <p>Yes, if we like what you show us, then why not? We will check your online portfolio and links you provide and we will make our decision based on what we see.</p>
+
+                            <h3 className="title-4 mb-4 mt-5">How can I contribute?</h3>
+                            <p>This is an open source project. Meaning, we welcome your input, suggestions and even contribution to the project. If you want to improve something, simply create a Pull Request and let us know from our <a href="https://github.com/sierraalfaone/nepaliswhodesign" className="text-external" rel="noopener noreferrer" target="_blank">GitHub Code Repository</a>.</p>
                         </div>
                         <div className="col-md-6 mt-5 mt-md-0">
                             <h3 className="title-4 mb-4">Do I need to be living and working in Nepal?</h3>
