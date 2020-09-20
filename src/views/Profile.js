@@ -109,7 +109,7 @@ class Profile extends React.Component {
                 </ScrollAnimation>
                 </div>
                 <div className={ `my-5 ${aspectRatio}` } >
-                    <Parallax y={[0, 50]}>
+                    <Parallax y={[0, 50]} className="z--100">
                         { image && <img src={ image } alt={ people.name } className="img-banner animate__animated animate__fadeIn" /> }
                     </Parallax>
                 </div>
