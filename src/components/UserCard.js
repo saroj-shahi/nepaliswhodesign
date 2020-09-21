@@ -24,7 +24,7 @@ export default class UserCard extends React.Component {
         let profile =  data ? data.photourl.replace(".jpg", "") : null
 
         if( data ) {
-            return <NavLink to={ `/profile/${ profile }` } className="card my-3 my-md-5">
+            return <NavLink to={ `/profile/${ profile }` } className="card my-5">
                         <div className="card-content">
 
                         <figure className="card-img-wrapper bg-white">
