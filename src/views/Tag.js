@@ -1,14 +1,14 @@
 import React from 'react'
 import axios from 'axios'
-import { apiPath } from '../data/config'
-
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
 import { InfiniteScroll } from 'react-simple-infinite-scroll'
-import HelmetData from '../components/HelmetData'
+
 import { connect } from 'react-redux';
 import { setIsLoading } from '../store/action'
 
+import { apiPath } from '../data/config'
 
+import HelmetData from '../components/HelmetData'
 import UserCard from '../components/UserCard'
 import NotFound from '../components/NotFound'
 
@@ -66,7 +66,7 @@ class Tag extends React.Component {
                 <HelmetData title={ `Who design ` + tag } />
 
                 <ParallaxProvider>
-                    <InfiniteScroll throttle={ 100 } threshold={ 300 } isLoading={ isLoading } hasMore={ !!cursor } onLoadMore={ this.loadPeople }>
+                    <InfiniteScroll throttle={ 100 } threshold={ 300 } isLoading={ isLoading } hasMore={ !!cursor } onLoadMore={ () => this.loadPeople(tag) }>
                         <div className="row py-5"><div className="col-12 mb-5"></div>
                             { people && people.map((item, index) => <Parallax className="col-lg-4 col-sm-6" key={ index } y={[0, 20*(index%2)]}>
                                 <UserCard data={ item } />
